@@ -1,31 +1,19 @@
-class tillbehör:
-  def _init_(self, tillbehör_namn, tillbehöver_pris):
-    self.namn = tillbehör_namn
-    self.pris = tillbehör_pris
+class Tillbehör:
+    def __init__(self, tillbehör_namn, tillbehör_pris):
+        self.namn = tillbehör_namn
+        self.pris = tillbehör_pris
 
-def _str_(self):
-  def _init_(self, tillbehör_namn, tillbehör_pris):
-    self.namn = tillbehör_namn
-    self.pris = tillbehör_pris
-
-def _str_(self):
-  return f"{self.namn}: {self.pris} kr"
+    def __str__(self):
+        return f"{self.namn}: {self.pris} kr"
   
-  
-Skapa en lista med tillbehör
 tillbehörsmeny = [
-    Tillbehör("Pommes frites", 25),
-    Tillbehör("Sallad", 30),
-    Tillbehör("Lökringar", 20),
-    Tillbehör("Vitlöksbröd", 35),
-    Tillbehör("Mozzarella sticks", 40),
-    Tillbehör("Coleslaw", 15)
-
-
-
+    Tillbehör("Pommes frites", 30),
+    Tillbehör("Sallad", 35),
+    Tillbehör("Lökringar", 25),
+    Tillbehör("Vitlöksbröd", 30),
+    Tillbehör("Mozzarella sticks", 45),
+    Tillbehör("Coleslaw", 25)
+]
 
 for tillbehör in tillbehörsmeny:
     print(tillbehör)
-
-  
-
