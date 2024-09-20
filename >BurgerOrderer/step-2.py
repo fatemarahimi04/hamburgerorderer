@@ -1,19 +1,37 @@
-class Tillbehör:
-    def __init__(self, tillbehör_namn, tillbehör_pris):
-        self.namn = tillbehör_namn
-        self.pris = tillbehör_pris
+def visa_meny():
+    menu = {
+        "Pommes frites": 25,
+        "Lökringar": 30,
+        "Kycklingvingar": 50,
+        "Mozzarella sticks": 35,
+        "Sallad": 20,
+    }
+    print("Välkommen till tillbehörsmenyn!")
+    print("Här är våra tillgängliga tillbehör:\n")
+    
+    for item, price in menu.items():
+        print(f"{item}: {price} kr")
 
-    def __str__(self):
-        return f"{self.namn}: {self.pris} kr"
-  
-tillbehörsmeny = [
-    Tillbehör("Pommes frites", 30),
-    Tillbehör("Sallad", 35),
-    Tillbehör("Lökringar", 25),
-    Tillbehör("Vitlöksbröd", 30),
-    Tillbehör("Mozzarella sticks", 45),
-    Tillbehör("Coleslaw", 25)
-]
+def beställ_tillbehör():
+    menu = {
+        "Pommes frites": 25,
+        "Lökringar": 30,
+        "Kycklingvingar": 50,
+        "Mozzarella sticks": 35,
+        "Sallad": 20
+    }
+    while True:
+        val = input("\nVilket tillbehör vill du beställa? Skriv namnet på tillbehöret: ")
+        if val in menu:
+            print(f"\nDu har beställt {val}. Det kostar {menu[val]} kr.")
+        else:
+            print("\nTyvärr, vi har inte det tillbehöret.")
+        igen = input("\nVill du beställa något annat? (ja/nej): ")
+        if igen.lower() != "ja":
+            print("Tack för ditt besök!")
+            break
 
-for tillbehör in tillbehörsmeny:
-    print(tillbehör)
+visa_meny()
+beställ_tillbehör()
+
+    
