@@ -9,7 +9,7 @@ def visa_meny():
   print("Välkommen till drickmenyn!")
   print("Här är våra tillgänliga drycker:/n")
 
-def drink, price in menu.items() :
+for drink, price in menu.items() :
 print(f"{drink}: {price} kr")
 def beställ_dryck() :
   menu = {
@@ -20,7 +20,7 @@ def beställ_dryck() :
     "Vatten": 10
   }
   while True:
-  val = input("/nVilken dryck vill du beställa? Skriva namnet på drycken:")
+  val = input("/nVilken dryck vill du beställa? Skriv namnet på drycken:")
   if val in menu:
     print(f"/nDu har beställt {val}. Det kostar {menu[val]} kr.")
   else:
