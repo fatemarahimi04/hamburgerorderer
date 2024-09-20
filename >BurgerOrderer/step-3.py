@@ -15,6 +15,7 @@ def beställ_dryck() :
   menu = {
     "Coca-Cola": 20,
     "Pepsi": 18,
+    "Fanta": 17,
     "Sprite": 19,
     "Vatten": 10
   }
