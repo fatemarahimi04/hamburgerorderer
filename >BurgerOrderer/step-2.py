@@ -1,28 +1,31 @@
-# Menyförslag för tillbehör
-menu = """
-### Menyförslag för Tillbehör
+class tillbehör:
+  def _init_(self, tillbehör_namn, tillbehöver_pris):
+    self.namn = tillbehör_namn
+    self.pris = tillbehör_pris
 
-#### Klassiska Tillbehör
-- *Pommes Frites*: Krispiga och gyllene, serverade med ketchup och majonnäs.
-- *Sötpotatispommes*: Ett hälsosammare alternativ med en söt och krispig smak.
-- *Lökringar*: Friterade lökringar med en krispig yta och mjuk insida.
+def _str_(self):
+  def _init_(self, tillbehör_namn, tillbehör_pris):
+    self.namn = tillbehör_namn
+    self.pris = tillbehör_pris
 
-#### Fräscha Sallader
-- *Coleslaw*: En krämig kålsallad med morötter och en touch av vinäger.
-- *Grönsallad*: Blandade gröna blad, tomater, gurka och en lätt vinägrett.
-- *Caesarsallad*: Romansallad, krutonger, parmesanost och Caesarsås.
+def _str_(self):
+  return f"{self.namn}: {self.pris} kr"
+  
+  
+Skapa en lista med tillbehör
+tillbehörsmeny = [
+    Tillbehör("Pommes frites", 25),
+    Tillbehör("Sallad", 30),
+    Tillbehör("Lökringar", 20),
+    Tillbehör("Vitlöksbröd", 35),
+    Tillbehör("Mozzarella sticks", 40),
+    Tillbehör("Coleslaw", 15)
 
-#### Dipp-Såser
-- *BBQ-sås*: En rökig och söt sås som passar perfekt till hamburgare och pommes.
-- *Aioli*: En krämig vitlökssås som ger en extra smakdimension.
-- *Chilimajonnäs*: En kryddig majonnäs för de som gillar lite hetta.
 
-#### Extra Tillbehör
-- *Mozzarellasticks*: Friterade mozzarellastänger med en krispig yta och smält ost inuti.
-- *Jalapeño Poppers*: Fyllda jalapeños med ost, friterade till perfektion.
-- *Pickles*: Syrliga gurkor som ger en fräsch kontrast till hamburgarna.
 
-print(menu)
+
+for tillbehör in tillbehörsmeny:
+    print(tillbehör)
 
   
 
