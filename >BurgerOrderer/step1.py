@@ -14,7 +14,7 @@ burgare_meny = {
 }
 
 def visa_meny():
-    print("Varmt välkommen till burgarmenyn!")
+    print("Varmt välkommen till menyn, här kan du välja hamburgare och i kommande steg väljer du tillbehör och dricka!")
     print("Dessa burgare har vi idag:\n")
    
     for burger, info in burgare_meny.items():
