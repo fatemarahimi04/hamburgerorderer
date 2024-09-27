@@ -1,3 +1,5 @@
+import request
+
 burgare_meny = {
     "DemureChicken": {
         "pris": 40,
@@ -21,6 +23,17 @@ def visa_meny():
         print(f"{burger}: {info['pris']} kr")
         print(f"Innehåll: {', '.join(info['ingredienser'])}\n")
 
+def skicka_till_kitchenview(burger, ingredienser, borttagna_ingredienser):
+    url = f"http://localhost:5000/buy/{burgare}"
+
+    params = {
+        'kvarvarande': ingredienser, 
+        'borttagna': borttagna_ingredienser
+    }
+
+    respons = requests.get(url, params=params)
+    print(respons.text)
+
 def beställ_burgare():
     while True: 
         val = input("\nVilken burgare är du sugen på idag? Ange namn(eller 'avsluta' för att avsluta): ")
@@ -33,8 +46,11 @@ def beställ_burgare():
             burgare = burgare_meny[val]
             print(f"\nDu har valt {val}. Det kostar {burgare['pris']} kr.")
             print(f"Ingredienser: {', '.join(burgare['ingredienser'])}")
+
+            kvarvarande_ingredienser = list(burgare['ingredienser'])
+            borttagna_ingredienser = ta_bort_ingredienser(kvarvarande_ingredienser) 
             
-            ta_bort_ingredienserna(burgare['ingredienser'])
+           skicka_till_kitchenview(val, kvarvarande_ingredienser, borttagna_ingredienser)
         else:
             print("Ogiltigt val, försök igen.")
 
