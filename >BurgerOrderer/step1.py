@@ -1,4 +1,7 @@
+from flask import Flask, render_template, request, redirect, url_for
 import request
+
+app = Flask(__name__)
 
 burgare_meny = {
     "DemureChicken": {
@@ -15,14 +18,38 @@ burgare_meny = {
     }
 }
 
+@app.route('/')
 def visa_meny():
-    print("Varmt välkommen till menyn, här kan du välja hamburgare och i kommande steg väljer du tillbehör och dricka!")
-    print("Dessa burgare har vi idag:\n")
-   
-    for burger, info in burgare_meny.items():
-        print(f"{burger}: {info['pris']} kr")
-        print(f"Innehåll: {', '.join(info['ingredienser'])}\n")
+    return render_template('meny.html', burgare_meny=burgare_meny)
 
+@app.route('/bestall/<burger>', methods=['GET', 'POST'])
+def beställ_burgare(burger):
+    if request.method == 'POST':
+        borttagna_ingredienser = request.form.getlist('borttagna')
+        kvarvarande_ingredienser = [ing for ing in burgare_meny[burger]['ingredienser] if ing not in borttagna_ingredienser]
+
+        skicka_till_kitchenview(burger, kvarvarande_ingredienser, borttagna_ingredienser)
+        return redirect(url_for('tack'))
+
+    return render_template('bestall.html', burger=burger, ingredienser=burgare_meny[burger]['ingredienser'])
+
+def tack():
+    return "Tack för din beställning!"
+
+def skick_till_kitchenview(burger, ingredienser, borttagna_ingredienser):
+    url = f"http://localhost:500/buy/{burger}"
+
+    params = {
+        'kvarvarande': ingredienser,
+        'borttagna': borttagna_ingredienser
+    }
+
+    respons = request.get(url, params=params)
+    print(respons.text)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+    
 def skicka_till_kitchenview(burger, ingredienser, borttagna_ingredienser):
     url = f"http://localhost:5000/buy/{burgare}"
 
@@ -33,26 +60,6 @@ def skicka_till_kitchenview(burger, ingredienser, borttagna_ingredienser):
 
     respons = requests.get(url, params=params)
     print(respons.text)
-
-def beställ_burgare():
-    while True: 
-        val = input("\nVilken burgare är du sugen på idag? Ange namn(eller 'avsluta' för att avsluta): ")
-        
-        if val == "avsluta":
-            print("Tack för ditt besök!")
-            break
-            
-        if val in burgare_meny:
-            burgare = burgare_meny[val]
-            print(f"\nDu har valt {val}. Det kostar {burgare['pris']} kr.")
-            print(f"Ingredienser: {', '.join(burgare['ingredienser'])}")
-
-            kvarvarande_ingredienser = list(burgare['ingredienser'])
-            borttagna_ingredienser = ta_bort_ingredienser(kvarvarande_ingredienser) 
-            
-           skicka_till_kitchenview(val, kvarvarande_ingredienser, borttagna_ingredienser)
-        else:
-            print("Ogiltigt val, försök igen.")
 
 def ta_bort_ingredienser(ingredienser): 
     borttagna_ingredienser = []
@@ -69,7 +76,7 @@ def ta_bort_ingredienser(ingredienser):
         else:
             print("Den ingrediensen finns inte på burgaren.")
             
-    print(f"\nDin slutgiltiga burgare innehåller: {', '.join(ingrediensier)}.")
+    print(f"\nDin slutgiltiga burgare innehåller: {', '.join(ingredienser)}.")
     if borttagna_ingredienser:
         print(f"Du har tagit bort: {', '.join(borttagna_ingredienser)}.\n")
 
