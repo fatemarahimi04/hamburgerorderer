@@ -1,1 +1,7 @@
+I started to make a plan for what kind os burgers I want to serve and what price they would have. 
 
+The next thing I have to plan is if the customer wants to remove some type of content on the burger.
+
+I added a new phrase, there we greet the customer by giving information about the three steps. 
+
+I realized i hadn't fixed Flask and requst so that the HTTP request could be sent to kitchenview so i fixed that to make it easier.
