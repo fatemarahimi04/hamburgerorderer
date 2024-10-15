@@ -50,4 +50,5 @@ def beställ_tillbehör():
 visa_meny()
 beställ_tillbehör()
 
-    
+    if __name__ == "__main__":
+
