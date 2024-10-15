@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
 import request
 
+app = Flask(__name__)
+
 """
     Visar tillbehörsmenyn med tillgängliga alternativ och deras priser.
 
@@ -51,4 +53,4 @@ visa_meny()
 beställ_tillbehör()
 
     if __name__ == "__main__":
-
+    app.run(debug=True)
